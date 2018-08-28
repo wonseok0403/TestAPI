@@ -32,6 +32,21 @@ app.post('/api/v1/state', async (req, res) => {
     res.json({app:app.toString(), state:state.toString()});
 });
 
+app.post('/api/login', async( req, res) =>{
+    var id = req.body.id;
+    var pw = req.body.pw;
+    if( id == "eunbee" && pw == "soso112233" ){
+        console.log(" login succeed ");
+        res.json("login success!");
+    }
+    else{
+        res.json("login failed!");
+    }
+})
+
+// app.get('/api/login', async(req, res) => {
+//     res.json("당신은 지금 로그인을 시도했습니다.");
+// });
 
 app.get('/api/v1/apilist', async( req, res) =>{
     res.json("/api/v1/state");
@@ -40,6 +55,17 @@ app.get('/api/v1/apilist', async( req, res) =>{
 app.get('/api/v1/apilist/:id', async( req,res) =>{ 
     console.log('here');
     res.json(req.params.id);
+    if(req.params.id == "USD") {
+        console.log("USD!");
+    }
+})
+
+app.get('/api/v1/apilist/:id/:pw', async( req,res) =>{ 
+    console.log('here');
+    res.json(req.params.id);
+    if(req.params.id == "USD") {
+        console.log("USD!");
+    }
 })
 
 app.listen(8080, () =>{
